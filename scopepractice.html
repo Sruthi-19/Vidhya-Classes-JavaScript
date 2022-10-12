@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scope Javascript</title>
+</head>
+<body>
+    <h1>JAVASCRIPT SCOPE</h1>
+    <button onclick="blockScope()">BLOCK SCOPE</button>
+    <button onclick="funcScope()">FUNCTION SCOPE</button> <br><br>
+    <button onclick="nestScope()">NESTED SCOPE</button>
+</body>
+<script>
+// BLOCK SCOPE VAR LET AND CONST
+function blockScope(){
+    for(let i=0;i<5;i++){
+        var x=10; // VAR declared in one for loop
+        console.log(x);
+    }
+    for(let j=0;j<2;j++){
+        console.log(x+1); // VAR declared in previous for loop can be accessed.
+    }
+    if (true){
+        var var1 = "10. Var variable";
+        let var2="20. Let Variable"
+        const var3= "30. Const variable";
+        console.log(`@SR The value of var1, var2 & var3 is: ${var1} ${var2} ${var3}`);
+    }
+    //Prints value as var is not block scoped. It can be accessed outside of if/for/while/{} any blocks
+    console.log(var1);
+    //Throws reference error as let bleongs to above if block. Cannot be accessed outside of it.
+    console.log(var2);
+    //Throws reference error as const bleongs to above if block. Cannot be accessed outside of it.
+    console.log(var3);
+}
+
+
+// FUNCTION SCOPE VAR LET AND CONST
+function funcScope(){
+    // Var, let and const are declared inside function callMe1. So cannot be accessed ouside of it.    
+    function callMe1(){
+        var var4="Hi"; // Var is function scoped when declared inside function
+        let var5="Iam" // let is function scoped when declared inside function 
+        const var6="Sruthi" // const is function scoped when declared inside function
+        console.log(`@SR ${var4} ${var5} ${var6}`);
+    }
+    callMe1();
+    console.log(`${var4} ${var5} ${var6}`);
+}
+
+
+// NESTED SCOPE
+// Child can access parent variables but parent cannot access child variables.
+function nestScope(){
+    function nestedOuter(){
+        const var7="Hi Iam var7";
+        function nestedInner(){
+            const var8="Hi Iam Var8";
+            console.log(var8);
+            console.log(var7);//Inner scope can access variables declared inside outer scope
+        }
+        nestedInner();
+        console.log(var8); //Outer scope cannot access variables declared inside inner scope 
+    }
+    nestedOuter();
+    
+}
+
+
+
+</script>
+</html>
