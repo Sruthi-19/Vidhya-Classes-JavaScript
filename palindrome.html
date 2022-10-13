@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palindrome</title>
+</head>
+
+<body>
+    <h1>Palindrome</h1>
+</body>
+<script>
+    //TRY 1
+    // function checkPalindrome(givenString) {
+    //     if (typeof givenString !== 'string' || givenString.length==0) {
+    //         window.alert("INVALID");
+    //     }
+    //     else {
+    //         givenString=givenString.toLowerCase();
+    //         var newString = "";
+    //         for (let j = givenString.length - 1; j >= 0; j--) {
+    //             newString += givenString[j];
+    //         }
+    //         newString===givenString ? window.alert("PALINDROME") : window.alert("NOT PALINDROME");
+
+    //     }
+
+
+    // }
+
+    //TRY 2
+    // function checkPalindrome(givenString) {
+    //     typeof givenString !== 'string' || givenString.length==0 
+    //     ?
+    //     window.alert("INVALID")
+    //     :  
+    //     givenString=givenString.toLowerCase();
+    //     var newString = "";
+    //     for (let j = givenString.length - 1; j >= 0; j--) 
+    //     {newString += givenString[j];}
+    //     newString===givenString ? window.alert("PALINDROME") : window.alert("NOT PALINDROME");
+
+    // }
+
+    //TRY 3
+    function checkPalindrome(givenString) {
+        let newString;
+
+        typeof givenString !== 'string' || givenString.length==0 
+        ?
+        window.alert("INVALID")
+        :
+        newString = givenString.toLowerCase().split("").reverse();
+        givenString=givenString.toLowerCase().split("");
+        givenString.every((val,index) => val === newString[index])
+        ? window.alert("PALINDROME") : window.alert("NOT PALINDROME");
+
+    }
+    checkPalindrome("MalayaLam");
+    // checkPalindrome("SRuthi");
+
+   
+
+    
+</script>
+
+</html>
