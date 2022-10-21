@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrays</title>
+</head>
+<style>
+    .btn1{
+        background-color: black;
+        color: red;
+        padding: 20px;
+        border-radius: 10px;
+    }
+    .overall-div{
+        background-color: goldenrod;
+    }
+    .sub-div{
+        /* margin: 90px; */
+    }
+    .input-element{
+        padding: 10px;
+        margin: 50px;
+    }
+</style>
+<body>
+    <button class="btn1" id="btn1" onclick="addSections()">ADD DIVS CONTAINING INPUT TAGS </button>
+    <div class="overall-div" id="overall-div">
+
+    </div>
+    
+</body>
+<script>
+    var inputArray;
+    const overallDiv=document.getElementById("overall-div");
+    function addSections(){
+        const subDiv=document.createElement("div");
+        subDiv.setAttribute("class","sub-div");
+        overallDiv.appendChild(subDiv);
+
+        const subDivArray=document.querySelectorAll(".sub-div");
+
+        const inputElem=document.createElement("input");
+        inputElem.setAttribute("class","input-element");
+        inputElem.setAttribute("id","input-element");
+        inputElem.placeholder="Enter a value";
+        subDiv.appendChild(inputElem);
+
+        var x=new Date().getTime();
+        inputElem.addEventListener('keyup',function(){
+            window.localStorage.setItem(x,inputElem.value);
+        });
+
+        const deleteBtn=document.createElement("button");
+        deleteBtn.setAttribute("id","delete-button");
+        deleteBtn.innerHTML="DELETE";
+        subDiv.appendChild(deleteBtn);
+        const deleteBtnArray=document.querySelectorAll("#delete-button");
+        for(let j=0;j<deleteBtnArray.length;j++){
+            deleteBtnArray[j].addEventListener("click",deleteMe);
+            function deleteMe(){
+                subDivArray[j].remove();
+                window.localStorage.removeItem(keys[j]);
+            }
+            
+        }
+    }
+
+
+
+    function renderUi(){
+        const keys=Object.keys(localStorage);
+        keys.sort();
+        const len=keys.length;
+        for(let i=0;i<len;i++){
+            const subDiv=document.createElement("div");
+            subDiv.setAttribute("class","sub-div");
+            overallDiv.appendChild(subDiv);
+
+            const subDivArray=document.querySelectorAll(".sub-div");
+
+            const inputElem=document.createElement("input");
+            inputElem.setAttribute("class","input-element");
+            inputElem.setAttribute("id","input-element");
+            inputElem.placeholder="Enter a value";
+            subDiv.appendChild(inputElem);
+
+            inputElem.addEventListener('change',function(){
+            window.localStorage.setItem(keys[i],inputElem.value); });
+            inputElem.value=window.localStorage.getItem(keys[i]);
+
+            const deleteBtn=document.createElement("button");
+            deleteBtn.setAttribute("id","delete-button");
+            deleteBtn.innerHTML="DELETE";
+            subDiv.appendChild(deleteBtn);
+            const deleteBtnArray=document.querySelectorAll("#delete-button");
+            for(let j=0;j<deleteBtnArray.length;j++){
+            deleteBtnArray[j].addEventListener("click",deleteMe);
+            function deleteMe(){
+                subDivArray[j].remove();
+                window.localStorage.removeItem(keys[j]);
+            }
+            
+        }
+
+        }
+
+    }
+    renderUi();
+
+   
+   
+    // window.onload=function(){
+    //     const keys=Object.keys(localStorage);
+    //     const len=keys.length;
+    //     for(let i=0;i<len;i++){
+    //         const subDiv=document.createElement("div");
+    //         subDiv.setAttribute("class","sub-div");
+    //         const inputElem=document.createElement("input");
+    //         inputElem.setAttribute("class","input-element");
+    //         inputElem.setAttribute("id","input-element");
+    //         inputElem.placeholder="Enter a value";
+    //         overallDiv.appendChild(subDiv);
+    //         subDiv.appendChild(inputElem);
+
+    //     }
+    // }
+
+    
+        
+   
+    
+    
+
+    //  INPUT FIELD VALUE RETAIN AFTER REFRESH 
+    // const inputElement=document.getElementById("input-tag");
+    // function retainChangedData(){
+    //     var inputValue=inputElement.value;
+    //     window.localStorage.setItem("input1",inputValue);
+
+    // }
+    // inputElement.value=window.localStorage.getItem("input1");
+
+
+</script>
+</html>
