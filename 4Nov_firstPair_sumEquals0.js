@@ -12,9 +12,7 @@ function firstPairSum(givenArray) {
   return finalObject;
 }
 
-function findPairSum(givenArray){
-    
-}
+
 
 
 console.log(firstPairSum([1, 2, 3, 4, -2, 19, -1]));
