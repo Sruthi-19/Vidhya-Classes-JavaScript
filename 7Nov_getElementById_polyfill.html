@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #id1 {
+        color: brown;
+    }
+</style>
+
+<body>
+    <h1 id="id1"> THIS IS SAMPLE TEXT H1</h1>
+    <div id="id2">
+        <div id="id3">
+            <div>
+                <div>
+                    <h2 id="idsubb"> THIS IS SAMPLE TEXT H2</h2>
+                </div>
+                <p id="idsubb"> THIS IS SAMPLE TEXT P</p>
+            </div>
+        </div>
+        <h2 id="id4"> HI </h2>
+    </div>
+
+
+</body>
+<script>
+    //TRY 1
+    // function custom_get_element_by_id(id) {
+    //     const overallBodyCollection = document.children[0].children[1].children;
+    //     if (overallBodyCollection.namedItem(id) !== null) {
+    //         console.log(overallBodyCollection.namedItem(id));
+    //     }
+    //     else {
+    //         let subCollection;
+    //         var lengthOfCollection;
+    //         for (let i = 0; i < overallBodyCollection.length; i++) {
+    //             lengthOfCollection = overallBodyCollection[i].children.length;
+    //             if (lengthOfCollection === 0) {
+    //                 console.log("NOPE NOTHING HERE");
+    //                 continue;
+    //             }
+    //             else {
+    //                 console.log("SOMETHING THERE");
+    //                 subCollection = overallBodyCollection[i].children;
+    //                 recursiveFunc(subCollection, lengthOfCollection);
+    //             }
+    //         }
+
+    //         function recursiveFunc(subCollection, lengthOfCollection) {
+    //             if (subCollection.namedItem(id) !== null) {
+    //                 console.log(subCollection.namedItem(id));
+    //             }
+    //             else {
+    //                 for (let i = 0; i < subCollection.length; i++) {
+    //                     lengthOfCollection = subCollection[i].children.length;
+    //                     if (lengthOfCollection === 0) {
+    //                         console.log("NOPE NOTHING HERE IN SUB");
+    //                         continue;
+    //                     }
+    //                     else {
+    //                         console.log("SOMETHING THERE IN SUB");
+    //                         subCollection = subCollection[i].children;
+    //                         recursiveFunc(subCollection, lengthOfCollection);
+    //                     }
+    //                 }
+    //             }
+
+    //         }
+
+    //     }
+
+    // }
+
+    //TRY 2
+    function custom_get_element_by_id1(id) {
+        let collectionVariable = document.body.children;
+        let collectionLength = collectionVariable.length;
+        let x;
+        recursiveFunc1(collectionVariable, collectionLength);
+        function recursiveFunc1(collectionVariable, collectionLength) {
+            for (let i = 0; i < collectionVariable.length; i++) {
+                collectionLength = collectionVariable[i].children.length;
+                if (collectionVariable.namedItem(id) !== null ) {
+                    x = collectionVariable.namedItem(id);
+                }
+                if(collectionVariable.namedItem(id)===null){
+                    x=null;
+                }
+                if (collectionLength === 0) {
+                    console.log("NOPE NOTHING HERE");
+                }
+                else {
+                    console.log("SOMETHING THERE");
+                    collectionVariable = collectionVariable[i].children;
+                    return recursiveFunc1(collectionVariable, collectionLength);
+                }
+            }
+            return x;
+        }
+        return x;
+
+    }
+
+    console.log(custom_get_element_by_id1("id10"));
+    // console.log(custom_get_element_by_id("idsubb"));
+    
+
+
+</script>
+
+</html>
